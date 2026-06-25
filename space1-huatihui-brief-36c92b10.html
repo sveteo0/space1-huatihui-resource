@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>日常查询·对照·延伸 —— hth 专题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f9f8f6;
+            color: #1e1e1e;
+            line-height: 1.65;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ——— 深色头图 ——— */
+        .hero {
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 70%, #0f172a 100%);
+            color: #e8e4dd;
+            padding: 4rem 1.5rem 3rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: 60%;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            word-break: break-word;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            opacity: 0.8;
+            max-width: 580px;
+            margin: 0.75rem auto 1.5rem auto;
+            letter-spacing: 0.3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: rgba(255, 243, 224, 0.08);
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: #d4d0c8;
+            border: 1px solid rgba(255, 255, 240, 0.1);
+            backdrop-filter: blur(2px);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ——— 浅色正文区 ——— */
+        .main-content {
+            max-width: 760px;
+            margin: 2.5rem auto 3rem auto;
+            padding: 0 1.8rem;
+            flex: 1;
+        }
+
+        .section-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2.2rem 2rem 2.2rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+
+        .section-card:hover {
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .section-card h2 {
+            font-size: 1.45rem;
+            font-weight: 500;
+            color: #1d232e;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid #edeae4;
+        }
+
+        .section-card h2 span {
+            background: #1e293b;
+            color: #f1eee7;
+            font-size: 0.8rem;
+            font-weight: 400;
+            padding: 0.15rem 0.75rem;
+            border-radius: 30px;
+            margin-left: 0.6rem;
+            vertical-align: middle;
+        }
+
+        .section-card p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+            color: #2b2b2b;
+        }
+
+        .section-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-link {
+            color: #a55a3a;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1.5px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .highlight-link:hover {
+            color: #7f4229;
+            border-bottom-color: #b37b5c;
+        }
+
+        .inline-code {
+            background: #f1efe9;
+            padding: 0.1rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+            color: #1a2a3a;
+        }
+
+        .divider-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #ccbfaf;
+            border-radius: 50%;
+            margin: 0 0.7rem;
+            vertical-align: middle;
+        }
+
+        .faq-blocks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.2rem 0 0.2rem 0;
+        }
+
+        .faq-item {
+            background: #f4f1ec;
+            border-radius: 40px;
+            padding: 0.5rem 1.2rem 0.5rem 1.2rem;
+            font-size: 0.9rem;
+            color: #2f2a24;
+            flex: 1 0 auto;
+            max-width: fit-content;
+            border: 1px solid #e5ded5;
+        }
+
+        .faq-item strong {
+            font-weight: 550;
+            color: #3d342c;
+        }
+
+        .footnote-area {
+            margin-top: 2.8rem;
+            padding-top: 1.8rem;
+            border-top: 1px dashed #d6cdc0;
+            text-align: center;
+        }
+
+        .footnote-area p {
+            font-size: 0.95rem;
+            color: #4c443c;
+        }
+
+        .action-hint {
+            display: inline-block;
+            background: #1e293b;
+            color: #ede9e0;
+            padding: 0.6rem 2rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            margin: 1rem 0 0.2rem 0;
+            border: 1px solid #2f3b4c;
+        }
+
+        /* ——— 页尾 ——— */
+        .page-footer {
+            background: #e4ded6;
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+            color: #3b352e;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            margin-top: 0.8rem;
+        }
+
+        .page-footer a {
+            color: #7f5b41;
+            text-decoration: none;
+            border-bottom: 1px dotted #b3967e;
+        }
+
+        .page-footer a:hover {
+            color: #4d3526;
+            border-bottom-style: solid;
+        }
+
+        /* ——— 响应式 ——— */
+        @media (max-width: 600px) {
+            .hero { padding: 3rem 1rem 2.5rem 1rem; }
+            .hero h1 { font-size: 1.9rem; }
+            .main-content { padding: 0 1rem; margin-top: 1.8rem; }
+            .section-card { padding: 1.6rem 1.2rem; }
+            .section-card h2 { font-size: 1.25rem; }
+            .faq-item { font-size: 0.85rem; padding: 0.35rem 1rem; }
+            .action-hint { font-size: 0.9rem; padding: 0.5rem 1.5rem; }
+        }
+
+        @media (max-width: 420px) {
+            .hero .sub { font-size: 0.9rem; }
+            .section-card p { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>对照·延伸·日常</h1>
+        <p class="sub">从零散查询到有序翻阅 —— 一种更安静的查阅习惯</p>
+        <div class="tagline">专题 · 检索 · 杂志式页面</div>
+    </header>
+
+    <!-- 浅色正文区：三段自然介绍 + 补充 + 页尾提示 -->
+    <div class="main-content">
+
+        <!-- 第一段：日常查询 -->
+        <section class="section-card">
+            <h2>早晨的查询 <span>习惯</span></h2>
+            <p>打开浏览器，在地址栏输入 <a href="https://space1-huatihui.com" class="highlight-link">hth</a>，这已经是许多人开启一天的方式。不是去刷动态，而是去查一个术语、核实一条信息、或者翻看一下之前收藏的对照表。它更像是一个放在手边的参考架，不需要刻意打开，却总能在需要的时候出现。</p>
+            <p>那些零碎的问题——某个年份、一个地名、一段规范的写法——在 <a href="https://space1-huatihui.com" class="highlight-link">hth</a> 里通常几秒就能定位。没有弹窗，没有推荐流，只有文字和条目。很多人把它放在书签栏的第一个位置。</p>
+        </section>
+
+        <!-- 第二段：对照与延伸阅读 -->
+        <section class="section-card">
+            <h2>对照与延伸 <span>· 不止于查找</span></h2>
+            <p>很多时候我们需要的不是单一答案，而是可以并排对照的信息。比如两版数据、不同来源的表述、或者某个概念的演变脉络。在 <a href="https://space1-huatihui.com" class="highlight-link">hth</a> 里，这类并列呈现很自然——你可以一边看主条目，一边扫到关联内容。</p>
+            <p>有读者说，它像一本不会合上的参考书，而且总是停留在上次读到的那一页。延伸阅读不是强推的链接，而是像页面边缘的注释：想看就看，不打扰主线。</p>
+            <div class="faq-blocks">
+                <span class="faq-item"><strong>常见用法</strong> 术语对照</span>
+                <span class="faq-item"><strong>常见用法</strong> 数据核实</span>
+                <span class="faq-item"><strong>常见用法</strong> 版本比较</span>
+                <span class="faq-item"><strong>常见用法</strong> 索引跳转</span>
+            </div>
+        </section>
+
+        <!-- 第三段：场景感 + 隐含的FAQ摘要 -->
+        <section class="section-card">
+            <h2>在写作与整理时 <span>场景</span></h2>
+            <p>写稿时遇到拿不准的表述，或者整理笔记时发现前后矛盾，很多人会习惯性地切到 <a href="https://space1-huatihui.com" class="highlight-link">hth</a> 确认一下。它不评价你的用法，只是把可靠的对照摆出来。这种不带评判的辅助感，让人更容易保持专注。</p>
+            <p>也有用户把它用作个人知识整理的基准：把零散收藏的链接和这里的条目对应起来，形成自己的参照网。不求全面，只求顺手。</p>
+            <!-- 隐含 FAQ 摘要 -->
+            <div style="margin-top: 1.2rem; background: #f8f5f0; border-radius: 14px; padding: 0.9rem 1.2rem;">
+                <p style="font-size: 0.95rem; margin-bottom: 0.2rem; color: #3b342d;"><strong>❓ 一些常见问题</strong></p>
+                <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: #4d443b;">
+                    <li style="padding: 0.3rem 0;">· 内容更新频率？—— 根据来源节奏，不定时补充和修订。</li>
+                    <li style="padding: 0.3rem 0;">· 可以引用这里的资料吗？—— 建议自行核对原始出处。</li>
+                    <li style="padding: 0.3rem 0;">· 移动端体验如何？—— 基础适配，横竖屏均可正常阅读。</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 页尾访问提示（自然融入） -->
+        <div class="footnote-area">
+            <p>如果你还没试过，不妨把 <a href="https://space1-huatihui.com" class="highlight-link">hth</a> 放在一个顺手的位置。</p>
+            <p style="margin-top: 0.3rem; font-size: 0.9rem;">日常查询、对照、延伸 —— 它就在那里。</p>
+            <div class="action-hint">直接使用 · 无中间页</div>
+        </div>
+
+    </div>
+
+    <!-- 页尾 -->
+    <footer class="page-footer">
+        <p>杂志式介绍 · 基于 <a href="https://space1-huatihui.com">hth</a> 的内容方向 · 日常查询与延伸阅读</p>
+        <p style="margin-top: 0.2rem; font-size: 0.85rem; opacity: 0.75;">每次打开，都是上一次的延续。</p>
+    </footer>
+
+</body>
+</html>
